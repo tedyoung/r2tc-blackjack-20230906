@@ -8,12 +8,6 @@ public class Card {
     private final Suit suit;
     private final String rank;
 
-    @Deprecated // we want Card(Suit suit, String rank)
-    public Card(String symbol, String rank) {
-        this.suit = Suit.from(symbol);
-        this.rank = rank;
-    }
-
     public Card(Suit suit, String rank) {
         this.suit = suit;
         this.rank = rank;
