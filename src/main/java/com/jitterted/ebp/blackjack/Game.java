@@ -5,7 +5,6 @@ import org.fusesource.jansi.AnsiConsole;
 
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 import static org.fusesource.jansi.Ansi.ansi;
 
@@ -153,7 +152,7 @@ public class Game {
     private void displayPlayerHand() {
         System.out.println();
         System.out.println("Player has: ");
-        display(playerHand);
+        playerHand.display();
         System.out.println(" (" + playerHand.value() + ")");
     }
 
@@ -183,19 +182,6 @@ public class Game {
                         .a("└─────────┘"));
     }
 
-    // move this over to Hand
-    private void display(Hand hand) {
-        displayHand(hand.getCards());
-    }
-
-    // inline into display(hand)
-    private void displayHand(List<Card> hand) {
-        System.out.println(hand.stream()
-                               .map(Card::display)
-                               .collect(Collectors.joining(
-                                       ansi().cursorUp(6).cursorRight(1).toString())));
-    }
-
     private void displayFinalGameState() {
         eraseScreen();
         displayDealerHandAtEndOfGame();
@@ -204,7 +190,7 @@ public class Game {
 
     private void displayDealerHandAtEndOfGame() {
         System.out.println("Dealer has: ");
-        display(dealerHand);
+        dealerHand.display();
         System.out.println(" (" + dealerHand.value() + ")");
     }
 }
