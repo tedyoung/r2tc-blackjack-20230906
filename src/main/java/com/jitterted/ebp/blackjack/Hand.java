@@ -12,8 +12,12 @@ public class Hand {
     public Hand() {
     }
 
-    public Hand(List<Card> cards) {
+    private Hand(List<Card> cards) {
         this.cards.addAll(cards);
+    }
+
+    static Hand createHandForTest(List<Card> cards) {
+        return new Hand(cards);
     }
 
     void drawCardFrom(Deck deck) {

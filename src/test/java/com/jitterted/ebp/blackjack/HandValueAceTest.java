@@ -32,7 +32,7 @@ public class HandValueAceTest {
         for (String rank : ranks) {
             cards.add(new Card(DUMMY_SUIT, rank));
         }
-        return new Hand(cards);
+        return Hand.createHandForTest(cards);
     }
 
 }
