@@ -22,4 +22,19 @@ public class HandValueAceTest {
                 .isEqualTo(1 + 8 + 3);
     }
 
+    @Test
+    void handWithOneAceAndOtherCardsEqualTo10ThenAceIsValuedAt11() {
+        Hand hand = HandFactory.createHand("A", "Q");
+
+        assertThat(hand.value())
+                .isEqualTo(11 + 10); // EVIDENT DATA
+    }
+
+    @Test
+    void handWithOneAceAndOtherCardsEqualTo12AceIsValuedAt1() {
+        Hand hand = HandFactory.createHand("A", "8", "4");
+
+        assertThat(hand.value())
+                .isEqualTo(1 + 8 + 4);
+    }
 }
