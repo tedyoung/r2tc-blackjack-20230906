@@ -12,11 +12,11 @@ public class HandValueAceTest {
 
     @Test
     public void handWithOneAceTwoCardsIsValuedAt11() throws Exception {
-        Game game = new Game();
         List<Card> cards = List.of(new Card(DUMMY_SUIT, "A"),
                                    new Card(DUMMY_SUIT, "5"));
+        Hand hand = new Hand(cards);
 
-        assertThat(game.handValueOf(cards))
+        assertThat(hand.value())
                 .isEqualTo(11 + 5);
     }
 
