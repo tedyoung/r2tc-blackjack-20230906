@@ -52,4 +52,12 @@ public class Hand {
     Card faceUpCard() {
         return cards.get(0);
     }
+
+    boolean isBusted() {
+        return value() > 21;
+    }
+
+    boolean pushes(Hand otherHand) {
+        return value() == otherHand.value();
+    }
 }
