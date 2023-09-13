@@ -21,10 +21,7 @@ public class HandValueAceTest {
 
     @Test
     public void handWithOneAceAndOtherCardsEqualTo11IsValuedAt1() throws Exception {
-        List<Card> cards = List.of(new Card(DUMMY_SUIT, "A"),
-                                   new Card(DUMMY_SUIT, "8"),
-                                   new Card(DUMMY_SUIT, "3"));
-        Hand hand = new Hand(cards);
+        Hand hand = createHand("A", "8", "3");
 
         assertThat(hand.value())
                 .isEqualTo(1 + 8 + 3);
@@ -35,8 +32,7 @@ public class HandValueAceTest {
         for (String rank : ranks) {
             cards.add(new Card(DUMMY_SUIT, rank));
         }
-        Hand hand = new Hand(cards);
-        return hand;
+        return new Hand(cards);
     }
 
 }
