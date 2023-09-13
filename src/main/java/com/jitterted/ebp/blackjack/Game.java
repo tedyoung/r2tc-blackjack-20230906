@@ -153,7 +153,7 @@ public class Game {
     private void displayPlayerHand() {
         System.out.println();
         System.out.println("Player has: ");
-        displayHand(playerHand.getCards());
+        display(playerHand);
         System.out.println(" (" + playerHand.value() + ")");
     }
 
@@ -183,6 +183,12 @@ public class Game {
                         .a("└─────────┘"));
     }
 
+    // move this over to Hand
+    private void display(Hand hand) {
+        displayHand(hand.getCards());
+    }
+
+    // inline into display(hand)
     private void displayHand(List<Card> hand) {
         System.out.println(hand.stream()
                                .map(Card::display)
@@ -198,7 +204,7 @@ public class Game {
 
     private void displayDealerHandAtEndOfGame() {
         System.out.println("Dealer has: ");
-        displayHand(dealerHand.getCards());
+        display(dealerHand);
         System.out.println(" (" + dealerHand.value() + ")");
     }
 }
