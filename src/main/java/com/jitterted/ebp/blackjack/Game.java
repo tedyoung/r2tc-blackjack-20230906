@@ -120,9 +120,23 @@ public class Game {
     }
 
     private int value(Hand hand) {
-        return handValueOf(hand.getCards());
+        List<Card> hand1 = hand.getCards();
+        int handValue = hand1
+                .stream()
+                .mapToInt(Card::rankValue)
+                .sum();
+
+        boolean hasAce = hasAce(hand1);
+
+        // if the total hand value <= 11, then count the Ace as 11 by adding 10
+        if (hasAce && handValue < 11) {
+            handValue += 10;
+        }
+
+        return handValue;
     }
 
+    @Deprecated // fix tests
     public int handValueOf(List<Card> hand) {
         int handValue = hand
                 .stream()
