@@ -60,4 +60,12 @@ public class WalletTest {
         assertThatThrownBy(() -> wallet.addMoney(-1))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void addZeroMoneyThrowsException() {
+        Wallet wallet = new Wallet();
+
+        assertThatThrownBy(() -> wallet.addMoney(0))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
 }
