@@ -6,4 +6,7 @@ public class Wallet {
         return true;
     }
 
+    public void addMoney(int amount) {
+
+    }
 }
