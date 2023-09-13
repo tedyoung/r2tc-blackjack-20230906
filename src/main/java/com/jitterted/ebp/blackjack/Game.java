@@ -158,14 +158,10 @@ public class Game {
 
     private void displayDealerHandGameInProgress() {
         System.out.println("Dealer has: ");
-        System.out.println(faceUpCard(dealerHand).display()); // first card is Face Up
+        System.out.println(dealerHand.faceUpCard().display());
 
         // second card is the hole card, which is hidden
         displayBackOfCard();
-    }
-
-    private Card faceUpCard(Hand hand) {
-        return hand.getCards().get(0);
     }
 
     private void eraseScreen() {

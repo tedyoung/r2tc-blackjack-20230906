@@ -46,4 +46,8 @@ public class Hand {
                                      .collect(Collectors.joining(
                                        ansi().cursorUp(6).cursorRight(1).toString())));
     }
+
+    Card faceUpCard() {
+        return getCards().get(0);
+    }
 }
