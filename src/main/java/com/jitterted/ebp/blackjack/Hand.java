@@ -17,13 +17,12 @@ public class Hand {
     }
 
     int value() {
-        List<Card> hand1 = cards;
-        int handValue = hand1
+        int handValue = cards
                 .stream()
                 .mapToInt(Card::rankValue)
                 .sum();
 
-        boolean hasAce = hand1
+        boolean hasAce = cards
                 .stream()
                 .anyMatch(card -> card.rankValue() == 1);
 
