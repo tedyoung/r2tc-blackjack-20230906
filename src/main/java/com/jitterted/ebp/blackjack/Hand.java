@@ -60,4 +60,12 @@ public class Hand {
     boolean pushes(Hand otherHand) {
         return value() == otherHand.value();
     }
+
+    boolean beats(Hand otherHand) {
+        return otherHand.value() < value();
+    }
+
+    boolean shouldDealerHit() {
+        return value() <= 16;
+    }
 }
