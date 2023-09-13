@@ -123,23 +123,19 @@ public class Game {
         return handValueOf(hand.getCards());
     }
 
-    // int handValueOf(Hand hand)
-
     public int handValueOf(List<Card> hand) {
-        int handValue = rawHandValue(hand);
+        int handValue = hand
+                .stream()
+                .mapToInt(Card::rankValue)
+                .sum();
 
-        handValue = adjustForAce(hand, handValue);
-
-        return handValue;
-    }
-
-    private int adjustForAce(List<Card> hand, int handValue) {
         boolean hasAce = hasAce(hand);
 
         // if the total hand value <= 11, then count the Ace as 11 by adding 10
         if (hasAce && handValue < 11) {
             handValue += 10;
         }
+
         return handValue;
     }
 
@@ -147,13 +143,6 @@ public class Game {
         return hand
                 .stream()
                 .anyMatch(card -> card.rankValue() == 1);
-    }
-
-    private int rawHandValue(List<Card> hand) {
-        return hand
-                .stream()
-                .mapToInt(Card::rankValue)
-                .sum();
     }
 
     private String inputFromPlayer() {
