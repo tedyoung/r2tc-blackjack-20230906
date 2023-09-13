@@ -78,11 +78,11 @@ public class Game {
     private void displayOutcome(boolean playerBusted) {
         if (playerBusted) {
             System.out.println("You Busted, so you lose.  💸");
-        } else if (value(dealerHand) > 21) {
+        } else if (dealerHand.value() > 21) {
             System.out.println("Dealer went BUST, Player wins! Yay for you!! 💵");
-        } else if (value(dealerHand) < value(playerHand)) {
+        } else if (dealerHand.value() < playerHand.value()) {
             System.out.println("You beat the Dealer! 💵");
-        } else if (value(dealerHand) == value(playerHand)) {
+        } else if (dealerHand.value() == playerHand.value()) {
             System.out.println("Push: You tie with the Dealer. 💸");
         } else {
             System.out.println("You lost to the Dealer. 💸");
@@ -92,7 +92,7 @@ public class Game {
     private void dealerTurn(boolean playerBusted) {
         // Dealer makes its choice automatically based on a simple heuristic (<=16, hit, 17>=stand)
         if (!playerBusted) {
-            while (value(dealerHand) <= 16) {
+            while (dealerHand.value() <= 16) {
                 dealerHand.drawCardFrom(deck);
             }
         }
@@ -109,7 +109,7 @@ public class Game {
             }
             if (playerChoice.startsWith("h")) {
                 playerHand.drawCardFrom(deck);
-                if (value(playerHand) > 21) {
+                if (playerHand.value() > 21) {
                     playerBusted = true;
                 }
             } else {
@@ -117,25 +117,6 @@ public class Game {
             }
         }
         return playerBusted;
-    }
-
-    private int value(Hand hand) {
-        List<Card> hand1 = hand.getCards();
-        int handValue = hand1
-                .stream()
-                .mapToInt(Card::rankValue)
-                .sum();
-
-        boolean hasAce = hand1
-                .stream()
-                .anyMatch(card -> card.rankValue() == 1);
-
-        // if the total hand value <= 11, then count the Ace as 11 by adding 10
-        if (hasAce && handValue < 11) {
-            handValue += 10;
-        }
-
-        return handValue;
     }
 
     @Deprecated // fix tests
@@ -173,7 +154,7 @@ public class Game {
         System.out.println();
         System.out.println("Player has: ");
         displayHand(playerHand.getCards());
-        System.out.println(" (" + value(playerHand) + ")");
+        System.out.println(" (" + playerHand.value() + ")");
     }
 
     private void displayDealerHandGameInProgress() {
@@ -218,6 +199,6 @@ public class Game {
     private void displayDealerHandAtEndOfGame() {
         System.out.println("Dealer has: ");
         displayHand(dealerHand.getCards());
-        System.out.println(" (" + value(dealerHand) + ")");
+        System.out.println(" (" + dealerHand.value() + ")");
     }
 }
