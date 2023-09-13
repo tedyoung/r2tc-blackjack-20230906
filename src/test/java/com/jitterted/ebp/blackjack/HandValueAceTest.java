@@ -2,6 +2,7 @@ package com.jitterted.ebp.blackjack;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -29,9 +30,11 @@ public class HandValueAceTest {
                 .isEqualTo(1 + 8 + 3);
     }
 
-    private Hand createHand(String rank1, String rank2) {
-        List<Card> cards = List.of(new Card(DUMMY_SUIT, rank1),
-                                   new Card(DUMMY_SUIT, rank2));
+    private Hand createHand(String... ranks) {
+        List<Card> cards = new ArrayList<>();
+        for (String rank : ranks) {
+            cards.add(new Card(DUMMY_SUIT, rank));
+        }
         Hand hand = new Hand(cards);
         return hand;
     }
