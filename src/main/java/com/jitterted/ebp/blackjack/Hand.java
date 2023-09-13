@@ -13,4 +13,8 @@ public class Hand {
     public List<Card> getCards() {
         return cards;
     }
+
+    void drawCardFrom(Deck deck) {
+        getCards().add(deck.draw());
+    }
 }
