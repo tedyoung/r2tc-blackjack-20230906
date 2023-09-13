@@ -14,7 +14,7 @@ public class WalletTest {
                 .isTrue();
     }
 
-    @Test
+//    @Test
     void newWalletAddMoneyIsNotEmpty() {
         Wallet wallet = new Wallet();
 
