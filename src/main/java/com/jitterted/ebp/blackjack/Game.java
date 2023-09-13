@@ -80,9 +80,9 @@ public class Game {
             System.out.println("You Busted, so you lose.  💸");
         } else if (handValueOf(dealerHand.getCards()) > 21) {
             System.out.println("Dealer went BUST, Player wins! Yay for you!! 💵");
-        } else if (handValueOf(dealerHand.getCards()) < handValueOf(playerHand.getCards())) {
+        } else if (handValueOf(dealerHand.getCards()) < value()) {
             System.out.println("You beat the Dealer! 💵");
-        } else if (handValueOf(dealerHand.getCards()) == handValueOf(playerHand.getCards())) {
+        } else if (handValueOf(dealerHand.getCards()) == value()) {
             System.out.println("Push: You tie with the Dealer. 💸");
         } else {
             System.out.println("You lost to the Dealer. 💸");
@@ -109,7 +109,7 @@ public class Game {
             }
             if (playerChoice.startsWith("h")) {
                 playerHand.drawCardFrom(deck);
-                if (handValueOf(playerHand.getCards()) > 21) {
+                if (value() > 21) {
                     playerBusted = true;
                 }
             } else {
@@ -118,6 +118,12 @@ public class Game {
         }
         return playerBusted;
     }
+
+    private int value() {
+        return handValueOf(playerHand.getCards());
+    }
+
+    // int handValueOf(Hand hand)
 
     public int handValueOf(List<Card> hand) {
         int handValue = rawHandValue(hand);
@@ -166,7 +172,7 @@ public class Game {
         System.out.println();
         System.out.println("Player has: ");
         displayHand(playerHand.getCards());
-        System.out.println(" (" + handValueOf(playerHand.getCards()) + ")");
+        System.out.println(" (" + value() + ")");
     }
 
     private void displayDealerHandGameInProgress() {
