@@ -12,17 +12,12 @@ public class Hand {
     public Hand() {
     }
 
-    @Deprecated // this is scaffolding
-    public List<Card> getCards() {
-        return cards;
-    }
-
     void drawCardFrom(Deck deck) {
-        getCards().add(deck.draw());
+        cards.add(deck.draw());
     }
 
     int value() {
-        List<Card> hand1 = getCards();
+        List<Card> hand1 = cards;
         int handValue = hand1
                 .stream()
                 .mapToInt(Card::rankValue)
@@ -41,13 +36,13 @@ public class Hand {
     }
 
     void display() {
-        System.out.println(getCards().stream()
-                                     .map(Card::display)
-                                     .collect(Collectors.joining(
+        System.out.println(cards.stream()
+                                .map(Card::display)
+                                .collect(Collectors.joining(
                                        ansi().cursorUp(6).cursorRight(1).toString())));
     }
 
     Card faceUpCard() {
-        return getCards().get(0);
+        return cards.get(0);
     }
 }
